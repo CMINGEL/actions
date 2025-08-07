@@ -11,12 +11,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4.2.2
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
+
     - name: 'hello word'
       run: echo "Hello Word" 
     - name: print fecha
       run: date
     - name: muestra el contenido del directorio
       run: ls -la
+
   # app-tests:
   #   runs-on: ubuntu-latest
 
