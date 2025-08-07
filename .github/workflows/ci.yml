@@ -3,7 +3,7 @@ name: Name Midu
 on:
   push:
     branches: [ "master" ]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +11,10 @@ jobs:
     steps:
     - name: 'hello word'
       run: echo "Hello Word" 
-
+    - name: print fecha
+      run: date
+    - name: muestra el contenido del directorio
+      run: ls -la
   # app-tests:
   #   runs-on: ubuntu-latest
 
