@@ -2,36 +2,41 @@ name: Name Midu
 
 on:
   push:
-    branches: ["develop"]
-  pull_request:
-    branches: ["develop"]
-
+    branches: [ "master" ]
+    
 jobs:
-  app-tests:
+  build:
     runs-on: ubuntu-latest
 
     steps:
+    - name: 'hello word'
+      run: echo "Hello Word" 
 
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+  # app-tests:
+  #   runs-on: ubuntu-latest
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
+  #   steps:
 
-      - name: Install NPM dependencies
-        run: npm install
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Check javaScript code style
-        run: npm run lint
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '16.x'
 
-      - name: Execute javaScript tests
-        run: npm run coverage
+  #     - name: Install NPM dependencies
+  #       run: npm install
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #     - name: Check javaScript code style
+  #       run: npm run lint
+
+  #     - name: Execute javaScript tests
+  #       run: npm run coverage
+
+  #     - name: SonarCloud Scan
+  #       uses: SonarSource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
