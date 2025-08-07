@@ -39,6 +39,12 @@ jobs:
     - name: Run build
       run: npm run build
 
+    - name: Cargar el build como artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: dist/
+
     - name: 'hello word'
       run: echo "Hello Word" 
     - name: print fecha
