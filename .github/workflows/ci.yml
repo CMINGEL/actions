@@ -1,57 +1,67 @@
-name: Name Midu
+name: Testing Actions CM
 
 on:
   push:
     branches: [ "master" ]
 
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ci-${{ github.ref }}
+#   cancel-in-progress: true
 
 jobs:
-  build:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4.2.2
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20.x
-        cache: 'npm'
-    - name: Create .env file
-      run: |
-        echo '{
-          "Dev": {
-            "FIREBASE_API_KEY": "${{ secrets.VITE_FIREBASE_API_KEY }}",
-            "FIREBASE_AUTH_DOMAIN": "${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}",
-            "FIREBASE_PROJECT_ID": "${{ secrets.VITE_FIREBASE_PROJECT_ID }}",
-            "FIREBASE_STORAGE_BUCKET": "${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}",
-            "FIREBASE_MESSAGING_SENDER_ID": "${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}",
-            "FIREBASE_APP_ID": "${{ secrets.VITE_FIREBASE_APP_ID }}"
-          }
-        }' > .env-cmdrc.json
-    - run: npm ci
-
-    - name: Run tests
-      run: npm test
-
-    - name: Run build
-      run: npm run build
-
-    - name: Cargar el build como artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: build
-        path: dist/
-        retention-days: 1
-
     - name: 'hello word'
       run: echo "Hello Word" 
     - name: print fecha
       run: date
     - name: muestra el contenido del directorio
       run: ls -la
+  # build:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v4.2.2
+  #   - uses: actions/setup-node@v4
+  #     with:
+  #       node-version: 20.x
+  #       cache: 'npm'
+  #   - name: Create .env file
+  #     run: |
+  #       echo '{
+  #         "Dev": {
+  #           "FIREBASE_API_KEY": "${{ secrets.VITE_FIREBASE_API_KEY }}",
+  #           "FIREBASE_AUTH_DOMAIN": "${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}",
+  #           "FIREBASE_PROJECT_ID": "${{ secrets.VITE_FIREBASE_PROJECT_ID }}",
+  #           "FIREBASE_STORAGE_BUCKET": "${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}",
+  #           "FIREBASE_MESSAGING_SENDER_ID": "${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}",
+  #           "FIREBASE_APP_ID": "${{ secrets.VITE_FIREBASE_APP_ID }}"
+  #         }
+  #       }' > .env-cmdrc.json
+  #   - run: npm ci
+
+  #   - name: Run tests
+  #     run: npm test
+
+  #   - name: Run build
+  #     run: npm run build
+
+  #   - name: Cargar el build como artifact
+  #     uses: actions/upload-artifact@v4
+  #     with:
+  #       name: build
+  #       path: dist/
+  #       retention-days: 1
+
+  #   - name: 'hello word'
+  #     run: echo "Hello Word" 
+  #   - name: print fecha
+  #     run: date
+  #   - name: muestra el contenido del directorio
+  #     run: ls -la
 
   # app-tests:
   #   runs-on: ubuntu-latest
