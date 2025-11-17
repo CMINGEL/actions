@@ -19,6 +19,8 @@ jobs:
         cache: 'npm'
     - name: install npm  
       run: npm install -g npm
+    - name: run build
+      run: npm run build
     - name: 'hello word'
       run: echo "Hello Word" 
     - name: muestra el contenido del directorio
